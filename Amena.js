@@ -1,9 +1,7 @@
 var line = 0;
-class Amena {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+class Amena extends LivingCreature {
+    constructor(x, y) {
+        super(x, y);
         this.energy = 8;
     }
     eat() {

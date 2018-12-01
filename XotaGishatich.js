@@ -1,10 +1,9 @@
-class XotaGishatich {
+class XotaGishatich extends LivingCreature {
     constructor(x, y) {
-        this.x = x
-        this.y = y
-        this.energy = 8
-        this.directions = []
+        super(x, y);
+        this.energy = 8;
     }
+
     stanalNorKordinatner() {
         this.directions = [
             [this.x - 2, this.y - 2],
@@ -17,22 +16,12 @@ class XotaGishatich {
             [this.x + 2, this.y + 2]
         ];
     }
-    yntrelVandak(ch) {
+
+    yntrelVandak(character) {
         this.stanalNorKordinatner();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-
-                if (matrix[y][x] == ch) {
-                    found.push(this.directions[i]);
-                }
-
-            }
-        }
-        return found;
+        return super.yntrelVandak(character);
     }
+
     sharjvel() {
         var datarkVandakner = this.yntrelVandak(0);
         var norVandak = random(datarkVandakner);

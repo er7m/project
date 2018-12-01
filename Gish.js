@@ -1,19 +1,7 @@
-class Gish {
-    constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
+class Gish extends LivingCreature {
+    constructor(x, y) {
+        super(x, y);
         this.energy = 15;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
     }
     getNewDirections() {
         this.directions = [
@@ -28,23 +16,13 @@ class Gish {
         ];
     }
 
-    chooseCell(character) {
-        this.getNewDirections()
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+    yntrelVandak(character) {
+        this.getNewDirections();
+        return super.yntrelVandak(character);
     }
 
     move() {
-        var empty = random(this.chooseCell(0))
+        var empty = random(this.yntrelVandak(0))
         this.energy--
         if (empty) {
             var x = empty[0]
@@ -57,7 +35,7 @@ class Gish {
     }
 
     mult() {
-        var empty = random(this.chooseCell(0))
+        var empty = random(this.yntrelVandak(0))
         if (empty && this.energy > 14) {
             var x = empty[0]
             var y = empty[1]
@@ -68,7 +46,7 @@ class Gish {
     }
 
     eat() {
-        var food = random(this.chooseCell(2))
+        var food = random(this.yntrelVandak(2))
         if (food) {
             var x = food[0]
             var y = food[1]
