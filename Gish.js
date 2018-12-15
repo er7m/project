@@ -1,4 +1,6 @@
-class Gish extends LivingCreature {
+var LivingCreature = require("./LivingCreature.js");
+
+module.exports = class Gish extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 15;
@@ -22,7 +24,7 @@ class Gish extends LivingCreature {
     }
 
     move() {
-        var empty = random(this.yntrelVandak(0))
+        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         this.energy--
         if (empty) {
             var x = empty[0]
@@ -35,7 +37,7 @@ class Gish extends LivingCreature {
     }
 
     mult() {
-        var empty = random(this.yntrelVandak(0))
+        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         if (empty && this.energy > 14) {
             var x = empty[0]
             var y = empty[1]
@@ -46,7 +48,7 @@ class Gish extends LivingCreature {
     }
 
     eat() {
-        var food = random(this.yntrelVandak(2))
+        var food = this.yntrelVandak(2)[Math.floor(Math.random() * this.yntrelVandak(2).length)];
         if (food) {
             var x = food[0]
             var y = food[1]

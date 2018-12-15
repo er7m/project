@@ -1,4 +1,6 @@
-class XotaGishatich extends LivingCreature {
+var LivingCreature = require("./LivingCreature.js");
+
+module.exports = class XotaGishatich extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 8;
@@ -24,7 +26,7 @@ class XotaGishatich extends LivingCreature {
 
     sharjvel() {
         var datarkVandakner = this.yntrelVandak(0);
-        var norVandak = random(datarkVandakner);
+        var norVandak = datarkVandakner[Math.floor(Math.random() * datarkVandakner.length)];
         this.energy--
         if (norVandak) {
             matrix[this.y][this.x] = 0;
@@ -39,9 +41,9 @@ class XotaGishatich extends LivingCreature {
     }
     utel() {
         var datarkVandakner = this.yntrelVandak(3);
-        var norVandak = random(datarkVandakner);
+        var norVandak = datarkVandakner[Math.floor(Math.random() * datarkVandakner.length)];;
         var datarkVandaknererku = this.yntrelVandak(2);
-        var norVandakerku = random(datarkVandaknererku);
+        var norVandakerku = datarkVandaknererku[Math.floor(Math.random() * datarkVandaknererku.length)];
 
         if (norVandak) {
             this.energy += 5
@@ -82,7 +84,7 @@ class XotaGishatich extends LivingCreature {
     }
     bazmanal() {
         var datarkVandakner = this.yntrelVandak(3);
-        var norVandak = random(datarkVandakner);
+        var norVandak = datarkVandakner[Math.floor(Math.random() * datarkVandakner.length)];
 
         if (norVandak) {
             var norx = norVandak[0];

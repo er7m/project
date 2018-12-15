@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/er7m/project/issues"
   },
-  "homepage": "https://github.com/er7m/project#readme"
+  "homepage": "https://github.com/er7m/project#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
 }

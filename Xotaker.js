@@ -1,4 +1,6 @@
-class Xotaker extends LivingCreature {
+var LivingCreature = require("./LivingCreature.js");
+
+module.exports = class Xotaker extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 8;
@@ -21,7 +23,7 @@ class Xotaker extends LivingCreature {
     }
 
     mult() {
-        var empty = random(this.yntrelVandak(0))
+        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         if (empty && this.energy > 10) {
             var x = empty[0]
             var y = empty[1]
@@ -32,7 +34,7 @@ class Xotaker extends LivingCreature {
     }
 
     move() {
-        var empty = random(this.yntrelVandak(0))
+        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
         this.energy--
         if (empty) {
             var x = empty[0]
@@ -45,7 +47,7 @@ class Xotaker extends LivingCreature {
     }
 
     eat() {
-        var food = random(this.yntrelVandak(1))
+        var food = this.yntrelVandak(1)[Math.floor(Math.random() * this.yntrelVandak(1).length)];
         if (food) {
             var x = food[0]
             var y = food[1]
