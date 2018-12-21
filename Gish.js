@@ -24,7 +24,8 @@ module.exports = class Gish extends LivingCreature {
     }
 
     move() {
-        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        var arr = this.yntrelVandak(0);
+        var empty = arr[Math.floor(Math.random() * arr.length)];
         this.energy--
         if (empty) {
             var x = empty[0]
@@ -37,7 +38,8 @@ module.exports = class Gish extends LivingCreature {
     }
 
     mult() {
-        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        var arr = this.yntrelVandak(0);
+        var empty = arr[Math.floor(Math.random() * arr.length)];
         if (empty && this.energy > 14) {
             var x = empty[0]
             var y = empty[1]
@@ -48,7 +50,8 @@ module.exports = class Gish extends LivingCreature {
     }
 
     eat() {
-        var food = this.yntrelVandak(2)[Math.floor(Math.random() * this.yntrelVandak(2).length)];
+        var arr = this.yntrelVandak(2);
+        var food = arr[Math.floor(Math.random() * arr.length)];
         if (food) {
             var x = food[0]
             var y = food[1]

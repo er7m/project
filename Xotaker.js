@@ -23,7 +23,8 @@ module.exports = class Xotaker extends LivingCreature {
     }
 
     mult() {
-        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        var arr = this.yntrelVandak(0);
+        var empty = arr[Math.floor(Math.random() * arr.length)];
         if (empty && this.energy > 10) {
             var x = empty[0]
             var y = empty[1]
@@ -34,7 +35,8 @@ module.exports = class Xotaker extends LivingCreature {
     }
 
     move() {
-        var empty = this.yntrelVandak(0)[Math.floor(Math.random() * this.yntrelVandak(0).length)];
+        var arr = this.yntrelVandak(0);
+        var empty = arr[Math.floor(Math.random() * arr.length)];
         this.energy--
         if (empty) {
             var x = empty[0]
@@ -47,7 +49,8 @@ module.exports = class Xotaker extends LivingCreature {
     }
 
     eat() {
-        var food = this.yntrelVandak(1)[Math.floor(Math.random() * this.yntrelVandak(1).length)];
+        var arr = this.yntrelVandak(1);
+        var food = arr[Math.floor(Math.random() * arr.length)];
         if (food) {
             var x = food[0]
             var y = food[1]

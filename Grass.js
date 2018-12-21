@@ -3,8 +3,12 @@ var LivingCreature = require("./LivingCreature.js");
 module.exports = class Grass extends LivingCreature {
 
     mult() {
-        var empty = this.yntrelVandak[Math.floor(Math.random() * this.yntrelVandak.length)];
-        this.multiply++
+        var arr = this.yntrelVandak(0);
+        var empty = arr[Math.floor(Math.random() * arr.length)];
+        if(exanak != "cmer"){
+            this.multiply++
+        }
+
         if (empty && this.multiply > 3) {
             var x = empty[0]
             var y = empty[1]

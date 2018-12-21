@@ -47,43 +47,20 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 app.use(express.static("."));
 app.get('/', function (req, res) {
-   res.redirect('index.html');
+    res.redirect('index.html');
 });
 server.listen(3000);
-io.on('connection', function (socket){
+io.on('connection', function (socket) {
 
 });
-/*
-patahakan matrix@ chi ashxatum
-function genMatrix(w, h) {
-    matrix = [];
-    for (var y = 0; y < h; y++) {
-        matrix[y] = [];
-        for (var x = 0; x < w; x++) {
-            var r = Math.random() * 100;
-            if (r < 16) r = 0;
-            else if (r < 33) r = 1;
-            else if (r < 49) r = 2;
-            else if (r < 66) r = 3;
-            else if (r < 82) r = 4;
-            else if (r < 100) r = 5;
-            matrix[y][x] = r;
-        }
-    }
-    return matrix;
-}
 
-w = 100;
-h = 100;
-*/
+var Grass = require("./Grass.js");
 var XotaGishatich = require("./XotaGishatich.js");
-var Xotaker = requv ("./Grass.js");
+var Xotaker = require("./Xotaker.js");
 var Gish = require("./Gish.js");
 var Amena = require("./Amena.js");
 
-matrix = [], grassArr = [], XotakerArr = [], gishArr = [], amenaArr = [], xotagishatichArr = [];
-
-//matrix = genMatrix(w, h);
+grassArr = [], XotakerArr = [], gishArr = [], amenaArr = [], xotagishatichArr = [];
 
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
@@ -105,13 +82,13 @@ for (var y = 0; y < matrix.length; y++) {
             amenaArr.push(am);
         }
         if (matrix[y][x] == 5) {
-            var am = new XotaGishatich(x, y, 1);
-            xotagishatichArr.push(am);
+            var dr = new XotaGishatich(x, y, 1);
+            xotagishatichArr.push(dr);
         }
     }
 }
 
-setInterval(drawServerayin, 1000)
+
 function drawServerayin() {
 
     for (var i in grassArr) {
@@ -138,4 +115,23 @@ function drawServerayin() {
     io.sockets.emit("matrix", matrix)
 }
 
+exanak = "amar";
+function exanakfunction(){
+    if(exanak == "amar"){
+        exanak = "ashun";
+    }
+    else if(exanak == "ashun"){
+        exanak = "cmer";
+    }
+    else if(exanak == "cmer"){
+        exanak = "garun";
+    }
+    else if(exanak == "garun"){
+        exanak = "amar";
+    }
+    io.sockets.emit("exanak", exanak)
+    console.log(exanak);
+}
 
+setInterval(drawServerayin, 1000);
+setInterval(exanakfunction, 5000);
