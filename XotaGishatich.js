@@ -27,7 +27,6 @@ module.exports = class XotaGishatich extends LivingCreature {
     sharjvel() {
         var datarkVandakner = this.yntrelVandak(0);
         var norVandak = datarkVandakner[Math.floor(Math.random() * datarkVandakner.length)];
-        this.energy--
         if (norVandak) {
             matrix[this.y][this.x] = 0;
             matrix[norVandak[1]][norVandak[0]] = 5;
@@ -38,6 +37,8 @@ module.exports = class XotaGishatich extends LivingCreature {
         if (this.energy <= 0) {
             this.mernel();
         }
+        this.energy -=2;
+        
     }
     utel() {
         var datarkVandakner = this.yntrelVandak(3);

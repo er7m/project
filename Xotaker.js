@@ -4,6 +4,7 @@ module.exports = class Xotaker extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 8;
+        this.qanak = 8;
     }
     getNewDirections() {
         this.directions = [
@@ -25,7 +26,14 @@ module.exports = class Xotaker extends LivingCreature {
     mult() {
         var arr = this.yntrelVandak(0);
         var empty = arr[Math.floor(Math.random() * arr.length)];
-        if (empty && this.energy > 10) {
+        //kaxavac exanakic xotaker@ bazmanum e tarber aragutyamb
+        if (exanak == "cmer") {
+            this.qanak = 100;
+        }
+        else if (exanak == "ashun" || exanak == "garun"){
+            this.qanak = 10;
+        }
+        if (empty && this.energy > this.qanak) {
             var x = empty[0]
             var y = empty[1]
             matrix[y][x] = 2

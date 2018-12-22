@@ -4,6 +4,7 @@ module.exports = class Gish extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 15;
+        this.qanak = 0;
     }
     getNewDirections() {
         this.directions = [
@@ -69,7 +70,14 @@ module.exports = class Gish extends LivingCreature {
     }
 
     die() {
-        if (this.energy <= 0) {
+        //kaxvac exanakic gishatich@ satkum e tarber aragutyamb
+        if (exanak == "cmer") {
+            this.qanak = 5;
+        }
+        else if (exanak == "ashun" || exanak == "garun"){
+            this.qanak = 3;
+        }
+        if (this.energy <= this.qanak) {
             matrix[this.y][this.x] = 0
             for (var i in gishArr) {
                 if (gishArr[i].x == this.x && gishArr[i].y == this.y) {

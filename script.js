@@ -1,3 +1,4 @@
+//-------------Himnakan--------------
 var side = 15;
 var socket = io();
 exanak = "amar";
@@ -6,7 +7,10 @@ function setup() {
     frameRate(4);
     background('#acacac');
     createCanvas(40 * side, 40 * side);
+    noStroke();
 }
+
+//-------------Matrix nkarel--------------
 
 function Drawmatrix(matrix) {
     for (var y = 0; y < matrix.length; y++) {
@@ -16,7 +20,7 @@ function Drawmatrix(matrix) {
                 fill("green");
             }
             else if (matrix[y][x] == 2) {
-                fill("yellow");
+                fill("#BCC409");
             }
             else if (matrix[y][x] == 3) {
                 fill("red");
@@ -27,6 +31,7 @@ function Drawmatrix(matrix) {
             else if (matrix[y][x] == 5) {
                 fill("#c81edb");
             }
+            //exanakneric kaxvac poxuma fon@
             else if (matrix[y][x] == 0) {
                 if (exanak == "amar") {
                     fill("#FBFCCB");
@@ -47,6 +52,8 @@ function Drawmatrix(matrix) {
         }
     }
 }
+
+//-------------stanum enq serveric--------------
 
 socket.on("matrix", Drawmatrix);
 socket.on("exanak", function (w){

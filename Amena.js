@@ -5,7 +5,7 @@ var LivingCreature = require("./LivingCreature.js");
 module.exports = class Amena extends LivingCreature {
     constructor(x, y) {
         super(x, y);
-        this.energy = 8;
+        this.energy = 50;
     }
     eat() {
         if (this.y == matrix.length - 1) {
@@ -297,6 +297,18 @@ module.exports = class Amena extends LivingCreature {
                 this.x = x
                 this.y = y
                 this.energy += 12
+            }
+        }
+        this.energy--;
+    }
+
+    die() {
+        if (this.energy <= 0) {
+            matrix[this.y][this.x] = 0
+            for (var i in amenaArr) {
+                if (amenaArr[i].x == this.x && amenaArr[i].y == this.y) {
+                    amenaArr.splice(i, 1)
+                }
             }
         }
     }
