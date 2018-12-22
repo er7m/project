@@ -1,11 +1,10 @@
 var line = 0;
-
 var LivingCreature = require("./LivingCreature.js");
 
 module.exports = class Amena extends LivingCreature {
     constructor(x, y) {
         super(x, y);
-        this.energy = 50;
+        this.energy = 70;
     }
     eat() {
         if (this.y == matrix.length - 1) {

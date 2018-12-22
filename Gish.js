@@ -74,7 +74,7 @@ module.exports = class Gish extends LivingCreature {
         if (exanak == "cmer") {
             this.qanak = 5;
         }
-        else if (exanak == "ashun" || exanak == "garun"){
+        else if (exanak == "ashun" || exanak == "garun") {
             this.qanak = 3;
         }
         if (this.energy <= this.qanak) {

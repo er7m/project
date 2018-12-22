@@ -56,6 +56,6 @@ function Drawmatrix(matrix) {
 //-------------stanum enq serveric--------------
 
 socket.on("matrix", Drawmatrix);
-socket.on("exanak", function (w){
+socket.on("exanak", function (w) {
     exanak = w;
 })

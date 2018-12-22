@@ -30,7 +30,7 @@ module.exports = class Xotaker extends LivingCreature {
         if (exanak == "cmer") {
             this.qanak = 100;
         }
-        else if (exanak == "ashun" || exanak == "garun"){
+        else if (exanak == "ashun" || exanak == "garun") {
             this.qanak = 10;
         }
         if (empty && this.energy > this.qanak) {

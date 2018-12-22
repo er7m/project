@@ -68,7 +68,7 @@ var Amena = require("./Amena.js");
 
 //-------------Zangvacner--------------
 
-grassArr = [], XotakerArr = [], gishArr = [], amenaArr = [], xotagishatichArr = []; 
+grassArr = [], XotakerArr = [], gishArr = [], amenaArr = [], xotagishatichArr = [];
 
 //-------------Zangvacner vijakagrutyan--------------
 
@@ -169,16 +169,16 @@ function writingStatitistic() {
         statisticxot.push(grassLengthNow)
     }
     if (XotakerLengthNow >= XotakerArr.length) {
-        statisticxotaker.push(XotakerLengthNow )
+        statisticxotaker.push(XotakerLengthNow)
     }
     if (GishatichLengthNow >= gishArr.length) {
-        statisticgishatich.push(GishatichLengthNow )
+        statisticgishatich.push(GishatichLengthNow)
     }
     if (XotagishatichGishatichLengthNow >= xotagishatichArr.length) {
-        statisticxotagishatich.push(XotagishatichGishatichLengthNow )
+        statisticxotagishatich.push(XotagishatichGishatichLengthNow)
     }
     if (OcLengthNow >= amenaArr.length) {
-        statisticoc.push(OcLengthNow )
+        statisticoc.push(OcLengthNow)
     }
 
     var myJSON = JSON.stringify(statisticxot);
@@ -186,7 +186,7 @@ function writingStatitistic() {
     var myJSONgishatich = JSON.stringify(statisticgishatich);
     var myJSONxotagishatich = JSON.stringify(statisticxotagishatich);
     var myJSONoc = JSON.stringify(statisticoc);
-    fs.writeFileSync('statistic.json', '{\n\n' + '"grass":' + myJSON + ",\n" + '"xotaker":' + myJSONxotaker + ",\n" +'"gishatich":' + myJSONgishatich + ",\n" + '"xotagisgatich":' + myJSONxotagishatich + ",\n" + '"Oc":' + myJSONoc + "\n\n }", function (err) { console.log(err) });
+    fs.writeFileSync('statistic.json', '{\n\n' + '"grass":' + myJSON + ",\n" + '"xotaker":' + myJSONxotaker + ",\n" + '"gishatich":' + myJSONgishatich + ",\n" + '"xotagisgatich":' + myJSONxotagishatich + ",\n" + '"Oc":' + myJSONoc + "\n\n }", function (err) { console.log(err) });
 
 }
 setInterval(writingStatitistic, 2000);

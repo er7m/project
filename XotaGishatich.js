@@ -37,8 +37,8 @@ module.exports = class XotaGishatich extends LivingCreature {
         if (this.energy <= 0) {
             this.mernel();
         }
-        this.energy -=2;
-        
+        this.energy -= 2;
+
     }
     utel() {
         var datarkVandakner = this.yntrelVandak(3);

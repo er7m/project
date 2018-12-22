@@ -13,7 +13,6 @@ module.exports = class LivingCreature {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-
     }
     yntrelVandak(character) {
         var found = [];

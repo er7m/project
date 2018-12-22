@@ -1,124 +1,122 @@
 <html>
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+        <script src="script.js"></script>
+        <meta charset="Utf-8">
+        <style>
+            body {
+                background-color: #9BF4F9;
+            }
 
-<head>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-    <script src="script.js"></script>
-    <meta charset="Utf-8">
-    <style>
-        body {
-            background-color: lightgreen;
-        }
+            .legend tr {
+                border: 1px solid black;
+            }
 
-        .legend tr {
-            border: 1px solid black;
-        }
+            #canvas {
+                float: left;
+                padding-left: 150px;
+                padding-top: 100px;
+            }
 
-        #canvas {
-            float: left;
-            padding-left: 150px;
-            padding-top: 100px;
-        }
+            #legend {
+                padding-right: 150px;
+                padding-top: 6px;
+                float: right;
+                top: 0;
+                right: 0;
+                width: 800px;
+            }
 
-        #legend {
-            padding-right: 150px;
-            padding-top: 180px;
-            float: right;
-            top: 0;
-            right: 0;
-            width: 800px;
-        }
+            .legend-color {
+                width: 30px;
+                height: 30px;
+            }
 
-        .legend-color {
-            width: 30px;
-            height: 30px;
-        }
+            td {
+                border: 1px solid black;
+                font-size: 14px;
+                padding-left: 5px;
+            }
+        </style>
 
-        td {
-            border: 1px solid black;
-            font-size: 14px;
-            padding-left: 5px;
-        }
-    </style>
+    </head>
 
-</head>
+    <body>
+        <div class="main">
+            <div id="canvas">
 
-<body>
-    <div class="main">
-        <div id="canvas">
+            </div>
+            <table id="legend">
+                <tr>
+                    <td class="legend-color">Գույն</td>
+                    <td>Անվանում</td>
+                    <td>Շարժվում է</td>
+                    <td>Ուտում է</td>
+                    <td>Բազմանում է</td>
+                    <td>Եղանակների ազդեցությունը</td>
+                    <td>Սատկում է</td>
+                </tr>
 
+                <tr>
+                    <td class="legend-color" style="background-color:gray"></td>
+                    <td>Դատարկ վանդակներ</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Փոխում է իր գույնը կախված եղանակից</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="legend-color" style="background-color:green"></td>
+                    <td>Խոտ</td>
+                    <td></td>
+                    <td></td>
+                    <td>Մոտակա 8 վանդակներում, 4 տակտը մեկ</td>
+                    <td>Բազմանում է տարբեր արագություններով ` կախված եղանակից</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="legend-color" style="background-color:#BCC409"></td>
+                    <td>Խոտակեր</td>
+                    <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
+                    <td>Խոտերին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
+                    <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 10֊ից ավել է</td>
+                    <td>Շարժվում է տարբեր արագություններով ` կախված եղանակից</td>
+                    <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+                </tr>
+                <tr>
+                    <td class="legend-color" style="background-color:red"></td>
+                    <td>Գիշատիչ</td>
+                    <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 2֊ով</td>
+                    <td>Խոտակերներին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
+                    <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 8֊ից ավել է</td>
+                    <td>Սատկում է տարբեր արագություններով ` կախված եղանակից</td>
+                    <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+                </tr>
+                <tr>
+                    <td class="legend-color" style="background-color:black"></td>
+                    <td>Օձ</td>
+                    <td>Միայն կողմնային վանդակներով, էներգիան քչանում է 1֊ով</td>
+                    <td>Ուտում է բոլորին, խոտերին ուտելիս էներգիան ավելանում է 1֊ով, խոտակերներին ուտելիս էներգիան ավելանում
+                        է 3֊ով, գիշատիչներին ուտելիս էներգիան ավելանում է 7֊ով</td>
+                    <td>Մեկն է աշխարհում</td>
+                    <td></td>
+                    <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
+                </tr>
+                <tr>
+                    <td class="legend-color" style="background-color:#c81edb"></td>
+                    <td>Խոտագիշատիչ</td>
+                    <td>2 քայլով` մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
+                    <td>Խոտակերների կամ գիշատիչներին` 2 քայլով` մոտակա 8 վանդակներում, ուտելիս էներգիան ավելանում է 1֊ով</td>
+                    <td>Բազմանում է մոտակա 8 տարածքներում` 2 քայլով, երբ էներգիան 21֊ից ավել է</td>
+                    <td></td>
+                    <td>Մահանում է, երբ էներգիան փոքր է 0֊ից</td>
+                </tr>
+                <tr>
+                    <td>Մնացականյան Էրիկ</td>
+                </tr>
+            </table>
         </div>
-        <table id="legend">
-            <tr>
-                <td class="legend-color">Գույն</td>
-                <td>Անվանում</td>
-                <td>Շարժվում է</td>
-                <td>Ուտում է</td>
-                <td>Բազմանում է</td>
-                <td>Եղանակների ազդեցությունը</td>
-                <td>Սատկում է</td>
-            </tr>
-
-            <tr>
-                <td class="legend-color" style="background-color:gray"></td>
-                <td>Դատարկ վանդակներ</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Փոխում է իր գույնը կախված եղանակից</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="legend-color" style="background-color:green"></td>
-                <td>Խոտ</td>
-                <td></td>
-                <td></td>
-                <td>Մոտակա 8 վանդակներում, 4 տակտը մեկ</td>
-                <td>Բազմանում է տարբեր արագություններով ` կախված եղանակից</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="legend-color" style="background-color:#BCC409"></td>
-                <td>Խոտակեր</td>
-                <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-                <td>Խոտերին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
-                <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 10֊ից ավել է</td>
-                <td>Շարժվում է տարբեր արագություններով ` կախված եղանակից</td>
-                <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-            </tr>
-            <tr>
-                <td class="legend-color" style="background-color:red"></td>
-                <td>Գիշատիչ</td>
-                <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 2֊ով</td>
-                <td>Խոտակերներին, մոտակա 8 վանդակներում, շարժվելիս էներգիան ավելանում է 2֊ով</td>
-                <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 8֊ից ավել է</td>
-                <td>Սատկում է տարբեր արագություններով ` կախված եղանակից</td>
-                <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-            </tr>
-            <tr>
-                <td class="legend-color" style="background-color:black"></td>
-                <td>Օձ</td>
-                <td>Միայն կողմնային վանդակներով, էներգիան քչանում է 1֊ով</td>
-                <td>Ուտում է բոլորին, խոտերին ուտելիս էներգիան ավելանում է 1֊ով, խոտակերներին ուտելիս էներգիան ավելանում
-                    է 3֊ով, գիշատիչներին ուտելիս էներգիան ավելանում է 7֊ով</td>
-                <td>Մեկն է աշխարհում</td>
-                <td></td>
-                <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-            </tr>
-            <tr>
-                <td class="legend-color" style="background-color:#c81edb"></td>
-                <td>Խոտագիշատիչ</td>
-                <td>2 քայլով` մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-                <td>Խոտակերների կամ գիշատիչներին` 2 քայլով` մոտակա 8 վանդակներում, ուտելիս էներգիան ավելանում է 1֊ով</td>
-                <td>Բազմանում է մոտակա 8 տարածքներում` 2 քայլով, երբ էներգիան 21֊ից ավել է</td>
-                <td></td>
-                <td>Մահանում է, երբ էներգիան փոքր է 0֊ից</td>
-            </tr>
-            <tr>
-                <td>Մնացականյան Էրիկ</td>
-            </tr>
-        </table>
-    </div>
-</body>
-
+    </body>
 </html>

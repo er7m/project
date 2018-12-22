@@ -11,7 +11,7 @@ module.exports = class Grass extends LivingCreature {
         if (exanak == "cmer") {
             this.qanak = 100;
         }
-        else if (exanak == "ashun" || exanak == "garun"){
+        else if (exanak == "ashun" || exanak == "garun") {
             this.qanak = 6;
         }
 
@@ -23,5 +23,4 @@ module.exports = class Grass extends LivingCreature {
             grassArr.push(gr)
         }
     }
-
 }
